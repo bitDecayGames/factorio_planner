@@ -1,0 +1,29 @@
+Water,0,1,,
+Copper Ore,0,1,,
+Iron Ore,0,1,,
+Coal,0,1,,
+Stone,0,1,,
+Petroleum Gas,0,1,Oil Refinery,
+Heavy Oil,0,1,Oil Refinery,
+Light Oil,0,1,Oil Refinery,
+Copper Plate,3.2,1,Smelter,Copper Ore:1
+Iron Plate,3.2,1,Smelter,Iron Ore:1
+Copper Cable,0.5,2,Assembler,Copper Plate:1
+Steel Plate,16,1,Assembler,Iron Plate:5
+Plastic,1,2,Assembler,Coal:1|Petroleum Gas:20
+Solid Fuel,2,1,Chemical Plant,Heavy Oil:20
+Sulfur,1,2,Chemical Plant,Petroleum Gas:30|Water:30
+Sulfuric Acid,1,50,Chemical Plant,Iron Plate:1|Sulfur:5|Water:100
+Battery,4,1,Chemical Plant,Copper Plate:1|Iron Plate:1|Sulfuric Acid:20
+Iron Gear,0.5,1,Assembler,Iron Plate:2
+Green Circuit,0.5,1,Assembler,Copper Cable:3|Iron Plate:1
+Red Circuit,6,1,Assembler,Copper Cable:4|Green Circuit:2|Plastic:2
+Blue Circuit,10,1,Assembler,Red Circuit:2|Green Circuit:20|Sulfuric Acid:5
+Rocket Fuel,30,1,Assembler,Light Oil:10|Solid Fuel:10
+Low Density Structure,20,1,Assembler,Copper Plate:20|Plastic:5|Steel Plate:2
+Rocket Control Unit,30,1,Assembler,Blue Circuit:1|Speed Module I:1
+Rocket Part,3,1,Assembler,Low Density Structure:10|Rocket Control Unit:10|Rocket Fuel:10
+Accumulator,10,1,Assembler,Battery:5|Iron Plate:2
+Radar,0.5,1,Assembler,Green Circuit:5|Iron Gear:5|Iron Plate:10
+Solar Panel,10,1,Assembler,Copper Plate:5|Green Circuit:15|Steel Plate:5
+Satellite,5,1,Assembler,Accumulator:100|Low Density Structure:100|Blue Circuit:100|Radar:5|Rocket Fuel:50|Solar Panel:100
