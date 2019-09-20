@@ -1,15 +1,15 @@
-Water,0,1,,
-Copper Ore,0,1,,
-Iron Ore,0,1,,
-Coal,0,1,,
-Stone,0,1,,
+Water,0,1,Pump,
+Copper Ore,0,1,Mine,
+Iron Ore,0,1,Mine,
+Coal,0,1,Mine,
+Stone,0,1,Mine,
 Petroleum Gas,0,1,Oil Refinery,
 Heavy Oil,0,1,Oil Refinery,
 Light Oil,0,1,Oil Refinery,
 Copper Plate,3.2,1,Smelter,Copper Ore:1
 Iron Plate,3.2,1,Smelter,Iron Ore:1
 Copper Cable,0.5,2,Assembler,Copper Plate:1
-Steel Plate,16,1,Assembler,Iron Plate:5
+Steel Plate,16,1,Smelter,Iron Plate:5
 Plastic,1,2,Assembler,Coal:1|Petroleum Gas:20
 Solid Fuel,2,1,Chemical Plant,Heavy Oil:20
 Sulfur,1,2,Chemical Plant,Petroleum Gas:30|Water:30
@@ -27,3 +27,4 @@ Accumulator,10,1,Assembler,Battery:5|Iron Plate:2
 Radar,0.5,1,Assembler,Green Circuit:5|Iron Gear:5|Iron Plate:10
 Solar Panel,10,1,Assembler,Copper Plate:5|Green Circuit:15|Steel Plate:5
 Satellite,5,1,Assembler,Accumulator:100|Low Density Structure:100|Blue Circuit:100|Radar:5|Rocket Fuel:50|Solar Panel:100
+Speed Module I,15,1,Assembler,Red Circuit:5|Green Circuit:5

@@ -1,30 +1,57 @@
 package main
 
 import (
+	"./calc"
+	"./model"
 	"fmt"
 	"io/ioutil"
-	"log"
+	"os"
+	"strconv"
 	"strings"
-	"github.com/bitDecayGames/factorio_planner/model"
 )
 
-func main() {
+const helpText = "factorio_planner [name_of_product string] [target_quantity_per_hour int]"
 
+func main() {
+	goal, err := makeGoalFromArgs()
+	if err != nil {
+		panic(err)
+	}
 	recipeData, err := readRecipes()
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	products, err := parseProducts(recipeData)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	err = sanityCheckProducts(products)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-	for _, p := range products {
-		log.Print(p)
+	err = calc.Goal(*goal, products)
+	if err != nil {
+		panic(err)
 	}
+}
+
+func makeGoalFromArgs() (*model.Goal, error) {
+	args := os.Args[1:]
+	if len(args) != 2 {
+		return nil, fmt.Errorf("invalid number of arguments:\n%v\n", helpText)
+	}
+
+	if len(args[0]) <= 0 {
+		return nil, fmt.Errorf("product name cannot be empty:\n%v\n", helpText)
+	}
+
+	quantity, err := strconv.Atoi(args[1])
+	if err != nil {
+		return nil, fmt.Errorf("couldn't parse quantity argument to an int:\n%v\n", helpText)
+	}
+
+	goal := model.MakeGoal(args[0], quantity)
+	return &goal, nil
 }
 
 func readRecipes() (string, error) {
@@ -35,11 +62,11 @@ func readRecipes() (string, error) {
 	return string(buf), nil
 }
 
-func parseProducts(data string) ([]Product, error) {
-	var products []Product
+func parseProducts(data string) ([]model.Product, error) {
+	var products []model.Product
 	split := strings.Split(data, "\n")
 	for i, s := range split {
-		p, err := parseProduct(s)
+		p, err := model.ParseProduct(s)
 		if err != nil {
 			return products, fmt.Errorf("parsing error on line %v: %v", i+1, err)
 		}
@@ -48,7 +75,7 @@ func parseProducts(data string) ([]Product, error) {
 	return products, nil
 }
 
-func sanityCheckProducts(products []Product) error {
+func sanityCheckProducts(products []model.Product) error {
 	for x, p1 := range products {
 		if len(p1.Name) <= 0 {
 			return fmt.Errorf("product name is empty on line %v", x+1)
@@ -86,4 +113,5 @@ func sanityCheckProducts(products []Product) error {
 			}
 		}
 	}
+	return nil
 }
